@@ -8,8 +8,9 @@ velocity_current = skyfield_data.velocity_nparray
 masses = skyfield_data.masses_nparray
 names = skyfield_data.names_nparray
 
-dt = 0.0001
-steps = 1000000
+dt = 1 # adjust!! (1 = 1 hour)
+steps = 3650 # adjust!! (# of calculation)
+
 trajectory = np.zeros((steps, len(masses), 3))
 
 for step in range(steps):
