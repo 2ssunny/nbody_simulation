@@ -37,3 +37,5 @@ plt.legend()
 plt.grid(True)
 plt.axis('equal')
 plt.show()
+filename = f"planets_{dt}_{steps}steps.png"
+plt.savefig(filename, dpi=500)
