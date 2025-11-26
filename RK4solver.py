@@ -2,7 +2,7 @@ import acceleration
 
 def rk4_step(r, v, m, h):
     """
-    r: current postion, v: current velocity, h: time step
+    r: current postion, v: current velocity, m: mass, h: time step
     """
     # k1
     v1 = v
