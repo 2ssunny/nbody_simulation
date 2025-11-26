@@ -48,6 +48,8 @@ def get_state(body_id, time):
 y0_list = []      # position/velocity
 masses_list = []
 names_list = []
+position_list=[]
+velocity_list = []
 
 print(now.utc_strftime('%Y-%m-%d %H:%M:%S'))
 print("-" * 40)
@@ -57,17 +59,22 @@ for name, body_id in BODY_INFO.items():
     position, velocity = get_state(body_id, now)
     
     # extend list to 1D list
-    y0_list.extend(position) # x, y, z
-    y0_list.extend(velocity) # vx, vy, vz
+    # y0_list.extend(position) # x, y, z
+    # y0_list.extend(velocity) # vx, vy, vz
     
+    position_list.append(position)
+    velocity_list.append(velocity)
     masses_list.append(MASSES_KG[name])
     names_list.append(name)
     
     print(f"Loaded: {name:<12} | ID: {body_id}")
 
 # Numpy array for simulation
-y0 = np.array(y0_list)
-masses = np.array(masses_list)
+# y0 = np.array(y0_list)
 
+position_nparray = np.array(position_list)
+velocity_nparray = np.array(velocity_list)
+masses_nparray = np.array(masses_list)
+names_nparray = np.array(names_list)
 
-print(y0)
+print(position_nparray)
