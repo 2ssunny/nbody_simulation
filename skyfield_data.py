@@ -35,14 +35,14 @@ MASSES_KG = {
 
 # function to extract data based on SSB (in km, hr)
 def get_state(body_id, time):
-    target = planets[body_id]
-    barycentric = target.at(time)
-    
-    pos_km = barycentric.position.km
-    vel_km_s = barycentric.velocity.km_per_s
-    vel_km_hr = vel_km_s * 3600.0
-    
-    return pos_km, vel_km_hr
+	target = planets[body_id]
+	barycentric = target.at(time)
+	
+	pos_km = barycentric.position.km
+	vel_km_s = barycentric.velocity.km_per_s
+	vel_km_hr = vel_km_s * 3600.0
+	
+	return pos_km, vel_km_hr
 
 
 y0_list = []      # position/velocity
@@ -55,19 +55,19 @@ print(now.utc_strftime('%Y-%m-%d %H:%M:%S'))
 print("-" * 40)
 
 for name, body_id in BODY_INFO.items():
-    # use extraction function
-    position, velocity = get_state(body_id, now)
-    
-    # extend list to 1D list
-    # y0_list.extend(position) # x, y, z
-    # y0_list.extend(velocity) # vx, vy, vz
-    
-    position_list.append(position)
-    velocity_list.append(velocity)
-    masses_list.append(MASSES_KG[name])
-    names_list.append(name)
-    
-    print(f"Loaded: {name:<12} | ID: {body_id}")
+	# use extraction function
+	position, velocity = get_state(body_id, now)
+	
+	# extend list to 1D list
+	# y0_list.extend(position) # x, y, z
+	# y0_list.extend(velocity) # vx, vy, vz
+	
+	position_list.append(position)
+	velocity_list.append(velocity)
+	masses_list.append(MASSES_KG[name])
+	names_list.append(name)
+	
+	print(f"Loaded: {name:<12} | ID: {body_id}")
 
 # Numpy array for simulation
 # y0 = np.array(y0_list)

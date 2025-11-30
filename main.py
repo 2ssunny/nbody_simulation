@@ -1,4 +1,5 @@
 import numpy as np
+from tqdm import trange
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 from mpl_toolkits.mplot3d import Axes3D
@@ -10,15 +11,18 @@ masses = skyfield_data.masses_nparray
 names = skyfield_data.names_nparray
 
 dt = 1 # adjust!! (1 = 1 hour)
-steps = 3650 # adjust!! (# of calculation)
+steps = 365000 # adjust!! (# of calculation)
 
 trajectory = np.zeros((steps, len(masses), 3))
 
-for step in range(steps):
+# for step in range(steps):
+#     trajectory[step] = position_current
+#     position_current, velocity_current = RK4solver.rk4_step(position_current, velocity_current, masses, dt)
+#     if step%200 == 0: #progress check
+#       print(step)
+for step in trange(steps):
     trajectory[step] = position_current
-    position_current, velocity_current = RK4solver.rk4_step(position_current, velocity_current, masses, dt)
-    if step%200 == 0: #progress check
-      print(step)
+    position_current, velocity_current = RK4solver.rk4_step(position_current, velocity_current, masses, dt) 
 print('Simulation finished')
 
 
